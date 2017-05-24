@@ -1,0 +1,32 @@
+{
+  "name": "cari_resto",
+  "version": "1.0.0",
+  "description": "API Party",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppsari/cari_resto.git"
+  },
+  "keywords": [
+    "database",
+    "api",
+    "hacktiv8"
+  ],
+  "author": "PRT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ppsari/cari_resto/issues"
+  },
+  "homepage": "https://github.com/ppsari/cari_resto#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.2"
+  }
+}
