@@ -28,7 +28,6 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.2",
-    "openweather-apis": "^3.3.2",
-    "openweather-node": "0.0.4"
+    "openweather-apis": "^3.3.2"
   }
 }
