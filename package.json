@@ -4,6 +4,7 @@
   "description": "API Party",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,6 +33,9 @@
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.2",
     "openweather-apis": "^3.3.2",
-    "zomato.js": "^1.0.4"
+    "zomato.js": "^1.0.4",
+    "express-session": "^1.15.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }
