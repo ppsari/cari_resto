@@ -3,7 +3,7 @@
 
 Users
 
-|Route                  |http |description|
+|**Route**                  |**http** |**description|
 |-----                  |---- |-----------|
 /register               |post  |create user
 /login                  |post  |login
@@ -17,10 +17,26 @@ Users
 Restaurants (users must login first)
 |Route                  |http |description|
 |-----                  |---- |-----------|
-/restaurants/help               |get  |view category, establishment, cuisines
-/restaurants?category=<id>&establishment=<id>&sort=cost&order=asc&cuisines=<id>                  |get  |search restaurants list
-/restaurants/18349559              |get  |view selected restaurants
+/restaurants/help       |get  |view category, establishment, cuisines
+/restaurants?category=<id>&establishment=<id>&sort=cost&order=asc&cuisines=<id> |get|search restaurants list
+/restaurants/18349559   |get  |view selected restaurants
 /restaurants/go?origin=<lat>,<lon>&destination=<lat>,<lon>&avoid=<tolls|highways|ferries>&units=metrics&mode=transit        |get  |view driving direction and current weather
+
+| **Route**      | **HTTP** | **Description**             |
+|----------------|----------|-----------------------------|
+| /register      | POST     | Create user                 |
+| /login         | GET      | Get a single user           |
+| /user/new      | POST     |                             |
+| /api/users/:id | DELETE   | Delete a user               |
+| /api/users/:id | PUT      | Update a user with new info |
+
+| **Route**      | **HTTP** | **Description**             |
+|----------------|----------|-----------------------------|
+| /register      | POST     | Create user                 |
+| /login         | GET      | Get a single user           |
+| /user/new      | POST     |                             |
+| /api/users/:id | DELETE   | Delete a user               |
+| /api/users/:id | PUT      | Update a user with new info |
 
 To Use
 ```javascript
