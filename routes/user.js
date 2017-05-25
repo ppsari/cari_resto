@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const users_controller = require('../controllers/users_controller');
-const check = require("../helpers/helper")
+const check = require("../helpers/util");
 
 
 router.post('/new', check.isLogin, check.isAuthorized , users_controller.insert);// admin only

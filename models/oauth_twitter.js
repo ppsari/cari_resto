@@ -1,4 +1,4 @@
-var OAuth = require('oauth');
+const OAuth = require('oauth');
 require('dotenv').config()
 
 var oauth = new OAuth.OAuth(

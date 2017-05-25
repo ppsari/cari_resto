@@ -1,12 +1,11 @@
-const direction = require('google-maps-direction');
-var weather = require('openweather-apis');
-
 require('dotenv').config();
+const direction = require('google-maps-direction');
+const weather = require('openweather-apis');
 
 const getDirection = (req,res) => {
   let destination = req.query.destination.split(',');
   let search = {}
-  for(key in req.query ) search[key] = req.query[key];
+  for(let key in req.query ) search[key] = req.query[key];
 
   direction(search)
   .then((result)=>{
@@ -25,7 +24,7 @@ const getDirection = (req,res) => {
     })
     dir += steps;
 
-    // cek cuaca
+    // cek weather
     weather.setLang('en');
     weather.setCoordinate(destination[0],destination[1]);
     weather.setUnits('metric');
@@ -43,7 +42,7 @@ const getDirection = (req,res) => {
         });
       }
     });
-  //end cek cuaca
+  //end cek weather
   });
 }
 

@@ -1,4 +1,4 @@
-var weather = require('openweather-apis');
+const weather = require('openweather-apis');
 
 function weatherNow(latitude,longitude) {
   // let location = req.params.koor; // get koor

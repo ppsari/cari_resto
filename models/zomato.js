@@ -1,5 +1,5 @@
-const Zomato = require('zomato.js');
 require('dotenv').config();
+const Zomato = require('zomato.js');
 const zmt = new Zomato(process.env.ZOMATO_KEY);
 
 
