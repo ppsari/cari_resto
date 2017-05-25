@@ -2,6 +2,7 @@
 ## Fungsi
 
 Users
+
 | **Route**               | **HTTP** | **Description**                                     |
 |-------------------------|----------|-----------------------------------------------------|
 | /register               | POST     | Create user                                         |
@@ -14,6 +15,7 @@ Users
 | /twitter/search/:search | GET      | Search feature on twitter                           |
 
 Restaurants (users must login first)
+
 | **Route**                                                  | **HTTP** | **Description**                            |
 |------------------------------------------------------------|----------|--------------------------------------------|
 | /restaurants/help                                          | GET      | View category, establishment, cuisines     |
@@ -31,5 +33,5 @@ npm run dev
 
 ## Anggota
 1. ppsari
-2. ridho
+2. ridho0
 3. raynormw
