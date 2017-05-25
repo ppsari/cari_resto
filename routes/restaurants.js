@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const zomato_controller = require('../controllers/zomato_controller');
 const gmaps_controller = require('../controllers/gmaps_controller');
-const check = require("../helpers/helper")
+const check = require("../helpers/util");
 
 router.get('/go/',check.isLogin ,gmaps_controller.getDirection);
 router.get('/help',check.isLogin ,zomato_controller.searchHelp);
