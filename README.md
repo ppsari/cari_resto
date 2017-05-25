@@ -1,5 +1,5 @@
-# cari_resto
-## Fungsi
+# cari_resto app
+## Function
 
 **Users**
 
@@ -16,14 +16,12 @@
 
 **Restaurants (users must login first)**
 
-| **Route**                                                  | **HTTP** | **Description**                            |
-|------------------------------------------------------------|----------|--------------------------------------------|
-| /restaurants/help                                          | GET      | View category, establishment, cuisines     |
-| /restaurants?category=<id>&establishment=<id>              | GET      | Search restaurants list                    |
-| &sort=cost&order=asc&cuisines=<id>                         |   -      |               -                            |
-| /restaurants/:id                                           | GET      | View selected restaurants                  |
-| /restaurants/go?origin=<lat>,<lon>&destination=<lat>,<lon> | GET      | View driving direction and current weather |
-| &avoid=<tolls>=metrics&mode=transit                        |   -      |                 -                          |
+| **Route**                                                                       | **HTTP** | **Description**                            |
+|----------------------------------------------------------------------|----------|-------------------------------------------------------|
+| /restaurants/help                                                    | GET      | View category, establishment, cuisines     |
+| /restaurants?category=id&establishment=id&sort=cost&order=asc&cuisines=id | GET      | Search restaurants list                    |
+| /restaurants/:id                                                     | GET      | View selected restaurants                  |
+| /restaurants/go?origin=lat,lon&destination=lat,lon&avoid=tolls=metrics&mode=transit | GET  | View driving direction and current weather |
 
 To Use
 ```javascript
@@ -31,7 +29,10 @@ npm install
 npm run dev
 ```
 
-## Anggota
-1. ppsari
-2. ridho0
-3. raynormw
+## Team
+* Poppy Sari :heart_eyes:
+  [Github](http://www.github.com/ppsari)
+* Ridho Pratama Putro :smirk:
+  [Github](http://www.github.com/ridho0)
+* Tirta Wirya Putra :sunglasses:
+  [Github](http://www.github.com/raynormw)
