@@ -14,7 +14,7 @@ Lihat kategori dll
 localhost:3000/restaurants/help
 
 search restoList
-localhost:3000/restaurants?category=2&establishment=1&sort=cost&order=desc&cuisines=30
+localhost:3000/restaurants?category=2&establishment=1&sort=cost&order=asc&cuisines=30
 
 ambil satuan restoran
 localhost:3000/restaurants/18349559
