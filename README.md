@@ -20,10 +20,10 @@
 |------------------------------------------------------------|----------|--------------------------------------------|
 | /restaurants/help                                          | GET      | View category, establishment, cuisines     |
 | /restaurants?category=<id>&establishment=<id>              | GET      | Search restaurants list                    |
-| &sort=cost&order=asc&cuisines=<id>                         |          |                                            |
+| &sort=cost&order=asc&cuisines=<id>                         |   -      |               -                            |
 | /restaurants/:id                                           | GET      | View selected restaurants                  |
 | /restaurants/go?origin=<lat>,<lon>&destination=<lat>,<lon> | GET      | View driving direction and current weather |
-| &avoid=<tolls|highways|ferries&units=metrics>&mode=transit |          |                                            |
+| &avoid=<tolls>=metrics&mode=transit                        |   -      |                 -                          |
 
 To Use
 ```javascript
