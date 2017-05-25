@@ -1,7 +1,7 @@
 var weather = require('openweather-apis');
 
 function weatherNow(req, res) {
-  let location = req.params.id;
+  let location = req.params.koor; // get koor
   weather.setLang('en');
 
   // set city by name
