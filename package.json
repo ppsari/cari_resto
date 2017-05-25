@@ -29,6 +29,7 @@
     "google-maps-direction": "^1.0.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.2",
+    "openweather-apis": "^3.3.2",
     "zomato.js": "^1.0.4"
   }
 }
