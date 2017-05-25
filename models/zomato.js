@@ -33,7 +33,7 @@ const searchResto = (req,res)=> {
   //bandung
   search.entity_id =  74;
   search.entity_type = 'city';
-  for(key in req.query ) search[key] = req.query[key];
+  for(let key in req.query ) search[key] = req.query[key];
   //
   // if (typeof req.query.category !== 'undefined') search.category = req.query.category;
   // if (typeof req.query.q !== 'undefined') search.q = req.query.q;

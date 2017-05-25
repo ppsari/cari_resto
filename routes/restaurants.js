@@ -4,10 +4,10 @@ const zomato_controller = require('../controllers/zomato_controller');
 const gmaps_controller = require('../controllers/gmaps_controller');
 const check = require("../helpers/util");
 
-router.get('/go/',check.isLogin ,gmaps_controller.getDirection);
-router.get('/help',check.isLogin ,zomato_controller.searchHelp);
-router.get('/',check.isLogin ,zomato_controller.searchResto);
-router.get('/:id',check.isLogin ,zomato_controller.showResto);
+router.get('/go/', check.isLogin, gmaps_controller.getDirection);
+router.get('/help', check.isLogin, zomato_controller.searchHelp);
+router.get('/', check.isLogin, zomato_controller.searchResto);
+router.get('/:id', check.isLogin, zomato_controller.showResto);
 /*
 SAMPEL URL:
 Lihat kategori dll
