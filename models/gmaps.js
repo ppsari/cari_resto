@@ -37,7 +37,7 @@ const getDirection = (req,res) => {
           let pattern = /(rain)/g;
           if (err) console.log(err.message);
            else {
-             let cuaca = (pattern.test(desc)? `Temperature : ${temp} Weather: ${desc} Don't forget to bring an umbrella..`: `Temperature : ${temp} Weather: ${desc}`);
+             let cuaca = (pattern.test(desc)? `Temperature : ${temp}\xB0C Weather: ${desc} Don't forget to bring an umbrella..`: `Temperature : ${temp}\xB0C Weather: ${desc}`);
              res.send(dir+'\n'+cuaca+'\n'+'Have Fun!');
            }
         });

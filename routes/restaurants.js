@@ -19,7 +19,6 @@ ambil satuan restoran
 localhost:3000/restaurants/18349559
 
 driving location
-localhost:3000/restaurants/go?origin=-6.2187662,106.7519429&destination=-6.2243333333,106.8425000000&avoid=tolls&units=metrics&mode=transit
-localhost:3000/restaurants/go?origin=-6.2187662,106.7519429&destination=-6.2243333333,106.8425000000&avoid=tolls|highways|ferries&units=metrics&mode=transit
+localhost:3000/restaurants/go?origin=-6.2187662,106.7519429&destination=-6.1921944444,106.8218305556&avoid=tolls|highways|ferries&units=metrics&mode=transit
 */
 module.exports = router;
