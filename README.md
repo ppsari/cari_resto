@@ -1,7 +1,7 @@
 # cari_resto
 ## Fungsi
 
-Users
+**Users**
 
 | **Route**               | **HTTP** | **Description**                                     |
 |-------------------------|----------|-----------------------------------------------------|
@@ -14,7 +14,7 @@ Users
 | /user/edit/:id          | POST     | Edit / Update profile (admin and current user only) |
 | /twitter/search/:search | GET      | Search feature on twitter                           |
 
-Restaurants (users must login first)
+**Restaurants (users must login first)**
 
 | **Route**                                                  | **HTTP** | **Description**                            |
 |------------------------------------------------------------|----------|--------------------------------------------|
