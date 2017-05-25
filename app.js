@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const passport = require('passport');
 
 const index = require('./routes/index');
-const lirik = require('./routes/lirik');
+const bmi = require('./routes/bmi');
 const restaurants = require('./routes/restaurants');
 const user = require('./routes/user');
 const twitter = require('./routes/twitter');
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);
 app.use('/restaurants', restaurants);
-app.use('/lirik', lirik);
+app.use('/bmi', bmi);
 app.use('/user', user);
 app.use('/twitter', twitter);
 
