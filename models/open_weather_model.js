@@ -1,13 +1,13 @@
 var weather = require('openweather-apis');
 
-function weatherNow(req, res) {
-  let location = req.params.koor; // get koor
+function weatherNow(latitude,longitude) {
+  // let location = req.params.koor; // get koor
   weather.setLang('en');
 
   // set city by name
-  weather.setCity(location);
+  // weather.setCity(location);
   // or set the coordinates (latitude,longitude)
-  // weather.setCoordinate(50.0467656, 20.0048731);
+  weather.setCoordinate(latitude, longitude);
   // or set city by ID (recommended by OpenWeatherMap)
   // weather.setCityId(4367872);
 
@@ -18,24 +18,24 @@ function weatherNow(req, res) {
   // get the Temperature
   weather.getTemperature(function(err, temp){
     if (err) {
-      res.send(err.message);
+      console.log(err.message);
     } else {
-      getResult(temp, res);
+      getResult(temp);
     }
   });
 }
 
-function getResult(temp, res) {
+function getResult(temp) {
   // get the Description of the weather condition
   weather.getDescription(function(err, desc) {
     if (err) {
-      res.send(err.message);
+      console.log(err.message);
     } else {
       let pattern = /(rain)/g;
       if (pattern.test(desc)) {
-        res.send(`Temperature : ${temp} \xB0C\nWeather: ${desc}\nDon't forget to bring an umbrella..`);
+        return(`Temperature : ${temp} Weather: ${desc} Don't forget to bring an umbrella..`);
       } else {
-        res.send(`Temperature : ${temp} \xB0C\nWeather: ${desc}`);
+        return(`Temperature : ${temp} Weather: ${desc}`);
       }
     }
   });

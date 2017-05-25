@@ -1,13 +1,14 @@
 const Zomato = require('zomato.js');
-const z = new Zomato('b7c50813222e6ebb793ca42a7d397807');
+require('dotenv').config();
+const zmt = new Zomato(process.env.ZOMATO_KEY);
 
 
 const searchHelp = (req,res) => {
-  z.categories()
+  zmt.categories()
   .then((categories)=>{
-    z.cuisines({ city_id: 74 })
+    zmt.cuisines({ city_id: 74 })
     .then(function(cuisines) {
-      z.establishments({
+      zmt.establishments({
         lat: 19.0895595,
         lon: 72.8634203
       })
@@ -28,6 +29,8 @@ const searchHelp = (req,res) => {
 
 const searchResto = (req,res)=> {
   let search = {};
+  //jakarta 74
+  //bandung
   search.entity_id =  74;
   search.entity_type = 'city';
   for(key in req.query ) search[key] = req.query[key];
@@ -42,8 +45,7 @@ const searchResto = (req,res)=> {
   // if (typeof req.query.sort !== 'undefined') search.sort = req.query.sort;
   // if (typeof req.query.order !== 'undefined') search.order = req.query.order;
   // if (typeof req.query.count !== 'undefined') search.count = req.query.count;
-  z
-  .search(search)
+  zmt.search(search)
   .then(function(restaurants) {
     restaurants = restaurants.map((resto)=>
     `${resto.id} - ${resto.name.toUpperCase()} :
@@ -62,8 +64,7 @@ const searchResto = (req,res)=> {
 }
 
 const showResto = (req,res) => {
-  z
-  .restaurant({
+  zmt.restaurant({
     res_id: req.params.id
   })
   .then(function(resto) {
