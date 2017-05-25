@@ -4,7 +4,7 @@ module.exports = {
   search: function(req, res) {
     twitter.search(req, res)
   },
-  recent: function(req, res) {
-    twitter.timeline(req, res)
+  tweet: function(req, res) {
+    twitter.tweet(req, res)
   }
 }

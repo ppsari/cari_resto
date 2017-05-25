@@ -7,6 +7,7 @@ const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 
 function index(req, res) {
+  console.log("req.user",req.user);
   res.send("Our site is alive, yeay..");
 }
 
@@ -78,8 +79,15 @@ function updateById(req, res) {
   })
 }
 
-function loginTwitter(req, res){
-
+function token(req, res){
+  User.findOne({username : req.user.username}, function(err, user){
+    if(err){
+      res.json({err})
+    } else {
+        let token = jwt.sign({username: user.username,role: user.role,location: user.location,id: user._id,token : user.token,tokenSecret : user.tokenSecret},secret, {expiresIn:'1h'})
+        res.json({token})
+    }
+  })
 }
 
 // function passportLocal(req, res) {
@@ -105,5 +113,6 @@ module.exports = {
   findAll,
   findById,
   deleteById,
-  updateById
+  updateById,
+  token
 }
