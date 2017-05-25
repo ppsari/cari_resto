@@ -1,5 +1,7 @@
 const OAuth = require('oauth');
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
+
 
 var oauth = new OAuth.OAuth(
   'https://api.twitter.com/oauth/request_token',
@@ -15,10 +17,11 @@ var oauth = new OAuth.OAuth(
 
 module.exports = {
   search: function(req, res){
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY);
     oauth.get(
       'https://api.twitter.com/1.1/search/tweets.json?q=%23'+req.params.search+'&count=10',
-      process.env.Access_Token, //test user token
-      process.env.Access_Token_Secret, //test user secret
+      decoded.token, //test user token
+      decoded.tokenSecret, //test user secret
       function (e, data){
         parse = JSON.parse(data)
         // let hasil = []
@@ -33,10 +36,11 @@ module.exports = {
       });
   },
   timeline: function(req, res){
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY);
     oauth.get(
       'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='+req.params.screen_name+'&count=10',
-      process.env.Access_Token, //test user token
-      process.env.Access_Token_Secret, //test user secret
+      decoded.token, //test user token
+      decoded.tokenSecret, //test user secret
       function (e, data){
         data = JSON.parse(data)
         let hasil = []
@@ -50,23 +54,17 @@ module.exports = {
         e ? res.json({e}) : res.send(hasil)
       });
   },
-  timeline: function(req, res){
-    oauth.get(
-      'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='+req.params.location+'&count=10',
-      process.env.Access_Token, //test user token
-      process.env.Access_Token_Secret, //test user secret
-      function (e, data){
-        data = JSON.parse(data)
-        let hasil = []
-        data.forEach(function(a){
-          hasil.push({
-            created_at : a.created_at,
-            name : a.user.name,
-            status : a.text
-          })
-        })
-        e ? res.json({e}) : res.send(hasil)
-      });
+  tweet: function(req, res){
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY);
+    oauth.post(
+        `https://api.twitter.com/1.1/statuses/update.json?status=${req.body.tweet}`,
+        decoded.token, //test user token
+        decoded.tokenSecret, //test user secret
+        req.params.status, "text",
+        function (e, data){
+          if (e) console.error(e);
+          res.send(data)
+        });
   }
 }
   // oauth.get(

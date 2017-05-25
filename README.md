@@ -7,12 +7,14 @@
 |-------------------------|----------|-----------------------------------------------------|
 | /register               | POST     | Create user                                         |
 | /login                  | GET      | User Login                                          |
+| /login/twitter          | GET      | User Login with twitter account                     |
 | /user/new               | POST     | Create user (admin only)                            |
 | /user/all_users         | GET      | Get all user (admin only)                           |
 | /user/find/:id          | GET      | View profile (admin and current user only)          |
 | /user/delete/:id        | DELETE   | Delete profile (admin and current user only)        |
 | /user/edit/:id          | POST     | Edit / Update profile (admin and current user only) |
 | /twitter/search/:search | GET      | Search feature on twitter                           |
+| /twitter/tweet          | POST     | tweet post feature on twitter                       |
 
 **Restaurants (users must login first)**
 
