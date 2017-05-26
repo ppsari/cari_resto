@@ -1,7 +1,11 @@
-var direction = require('google-maps-direction');
+require('dotenv').config();
+const direction = require('google-maps-direction');
+const weather = require('openweather-apis');
+
 const getDirection = (req,res) => {
+  let destination = req.query.destination.split(',');
   let search = {}
-  for(key in req.query ) search[key] = req.query[key];
+  for(let key in req.query ) search[key] = req.query[key];
 
   direction(search)
   .then((result)=>{
@@ -15,12 +19,30 @@ const getDirection = (req,res) => {
     let dir =
     `AWAL : ${start_address} (${departure_time})\nAKHIR : ${end_address} (${arrival_time})\nJarak : ${distance}\nDurasi : ${duration}\n`;
     let steps = '-----------------------------------------------------------------------------------------\n';
-    result.routes[0].legs[0].steps.forEach((step)=>{
+    result.routes[0].legs[0].steps.forEach((step)=> {
       steps += `${step.travel_mode} - ${step.html_instructions} (${step.distance.text} - ${step.duration.text})\n`;
     })
     dir += steps;
-    res.send(dir);
 
+    // cek weather
+    weather.setLang('en');
+    weather.setCoordinate(destination[0],destination[1]);
+    weather.setUnits('metric');
+    weather.setAPPID(process.env.WEATHER_KEY);
+    weather.getTemperature(function(err, temp){
+      if (err) console.log(err.message);
+      else {
+        weather.getDescription(function(err, desc) {
+          let pattern = /(rain)/g;
+          if (err) console.log(err.message);
+           else {
+             let cuaca = (pattern.test(desc)? `Temperature : ${temp}\xB0C Weather: ${desc} Don't forget to bring an umbrella..`: `Temperature : ${temp}\xB0C Weather: ${desc}`);
+             res.send(dir+'\n'+cuaca+'\n'+'Have Fun!');
+           }
+        });
+      }
+    });
+  //end cek weather
   });
 }
 

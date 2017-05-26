@@ -34,17 +34,7 @@ const searchResto = (req,res)=> {
   search.entity_id =  74;
   search.entity_type = 'city';
   for(let key in req.query ) search[key] = req.query[key];
-  //
-  // if (typeof req.query.category !== 'undefined') search.category = req.query.category;
-  // if (typeof req.query.q !== 'undefined') search.q = req.query.q;
-  // if (typeof req.query.lat !== 'undefined') search.lat = req.query.lat;
-  // if (typeof req.query.long !== 'undefined') search.long = req.query.long;
-  // if (typeof req.query.radius !== 'undefined') search.radius = req.query.radius;
-  // if (typeof req.query.establishment_type !== 'undefined') search.establishment_type = req.query.establishment_type;
-  // if (typeof req.query.cuisines !== 'undefined') search.cuisines = req.query.cuisines;
-  // if (typeof req.query.sort !== 'undefined') search.sort = req.query.sort;
-  // if (typeof req.query.order !== 'undefined') search.order = req.query.order;
-  // if (typeof req.query.count !== 'undefined') search.count = req.query.count;
+
   zmt.search(search)
   .then(function(restaurants) {
     restaurants = restaurants.map((resto)=>
