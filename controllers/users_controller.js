@@ -24,6 +24,10 @@ function register(req, res) {
   })
 }
 
+function getLogin(req, res) {
+  res.render('login');
+}
+
 function login(req, res){
   User.findOne({username : req.body.username}, function(err, user){
     if(err){
@@ -108,6 +112,7 @@ function token(req, res){
 module.exports = {
   index,
   register,
+  getLogin,
   login,
   insert,
   findAll,
