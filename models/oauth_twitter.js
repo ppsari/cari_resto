@@ -16,6 +16,23 @@ var oauth = new OAuth.OAuth(
 
 
 module.exports = {
+  searchbyplace:function(req,res,name='',detailresto='') {
+    oauth.get(
+      'https://api.twitter.com/1.1/search/tweets.json?q=%23'+name+'&count=10',
+      process.env.Access_Token,
+      process.env.Access_Token_Secret,
+      function (e, data){
+        let hasil = detailresto + `\n\n\nTWITTER SEARCH\n`;
+        let parse = JSON.parse(data)
+        parse = parse.statuses;
+        parse = parse.map(
+          (tweet) =>
+            `created_at : ${tweet.created_at}\nname : ${tweet.user.name}\ntext : ${tweet.text}`
+        ).join('\n\n');
+        hasil += parse;
+        e ? res.json({e}) : res.send(hasil)
+      });
+  },
   search: function(req, res){
     var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY);
     oauth.get(

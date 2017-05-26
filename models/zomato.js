@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Zomato = require('zomato.js');
 const zmt = new Zomato(process.env.ZOMATO_KEY);
-
+const oauth_twitter = require('./oauth_twitter');
 
 const searchHelp = (req,res) => {
   zmt.categories()
@@ -34,17 +34,7 @@ const searchResto = (req,res)=> {
   search.entity_id =  74;
   search.entity_type = 'city';
   for(let key in req.query ) search[key] = req.query[key];
-  //
-  // if (typeof req.query.category !== 'undefined') search.category = req.query.category;
-  // if (typeof req.query.q !== 'undefined') search.q = req.query.q;
-  // if (typeof req.query.lat !== 'undefined') search.lat = req.query.lat;
-  // if (typeof req.query.long !== 'undefined') search.long = req.query.long;
-  // if (typeof req.query.radius !== 'undefined') search.radius = req.query.radius;
-  // if (typeof req.query.establishment_type !== 'undefined') search.establishment_type = req.query.establishment_type;
-  // if (typeof req.query.cuisines !== 'undefined') search.cuisines = req.query.cuisines;
-  // if (typeof req.query.sort !== 'undefined') search.sort = req.query.sort;
-  // if (typeof req.query.order !== 'undefined') search.order = req.query.order;
-  // if (typeof req.query.count !== 'undefined') search.count = req.query.count;
+
   zmt.search(search)
   .then(function(restaurants) {
     restaurants = restaurants.map((resto)=>
@@ -68,7 +58,7 @@ const showResto = (req,res) => {
     res_id: req.params.id
   })
   .then(function(resto) {
-    resto =
+    let detailresto =
     `${resto.id} - ${resto.name.toUpperCase()} :
     Cost For Two: ${resto.currency} ${resto.average_cost_for_two}
     User Rating: ${resto.user_rating.aggregate_rating}
@@ -78,8 +68,10 @@ const showResto = (req,res) => {
     Offers: ${resto.offers.join(',')}
     Has Table Booking : ${resto.has_table_booking}
     Location: ${resto.location.address} (longitude : ${resto.location.longitude} latitude: ${resto.location.latitude})
-    Open in zomato - ${resto.deeplink}`
-    res.send(resto);
+    Open in zomato - ${resto.deeplink}\n`
+
+    oauth_twitter.searchbyplace(req,res,resto.name,detailresto);
+    // res.send(resto);
   })
   .catch(function(err) {
     console.error(err);
