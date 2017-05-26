@@ -1,13 +1,14 @@
+require('dotenv').config();
 const Zomato = require('zomato.js');
-const z = new Zomato('b7c50813222e6ebb793ca42a7d397807');
-
+const zmt = new Zomato(process.env.ZOMATO_KEY);
+const oauth_twitter = require('./oauth_twitter');
 
 const searchHelp = (req,res) => {
-  z.categories()
+  zmt.categories()
   .then((categories)=>{
-    z.cuisines({ city_id: 74 })
+    zmt.cuisines({ city_id: 74 })
     .then(function(cuisines) {
-      z.establishments({
+      zmt.establishments({
         lat: 19.0895595,
         lon: 72.8634203
       })
@@ -28,9 +29,11 @@ const searchHelp = (req,res) => {
 
 const searchResto = (req,res)=> {
   let search = {};
+  //jakarta 74
+  //bandung
   search.entity_id =  74;
   search.entity_type = 'city';
-  for(key in req.query ) search[key] = req.query[key];
+  for(let key in req.query ) search[key] = req.query[key];
   //
   // if (typeof req.query.category !== 'undefined') search.category = req.query.category;
   // if (typeof req.query.q !== 'undefined') search.q = req.query.q;
@@ -42,8 +45,7 @@ const searchResto = (req,res)=> {
   // if (typeof req.query.sort !== 'undefined') search.sort = req.query.sort;
   // if (typeof req.query.order !== 'undefined') search.order = req.query.order;
   // if (typeof req.query.count !== 'undefined') search.count = req.query.count;
-  z
-  .search(search)
+  zmt.search(search)
   .then(function(restaurants) {
     restaurants = restaurants.map((resto)=>
     `${resto.id} - ${resto.name.toUpperCase()} :
@@ -62,12 +64,11 @@ const searchResto = (req,res)=> {
 }
 
 const showResto = (req,res) => {
-  z
-  .restaurant({
+  zmt.restaurant({
     res_id: req.params.id
   })
   .then(function(resto) {
-    resto =
+    let detailresto =
     `${resto.id} - ${resto.name.toUpperCase()} :
     Cost For Two: ${resto.currency} ${resto.average_cost_for_two}
     User Rating: ${resto.user_rating.aggregate_rating}
@@ -77,8 +78,10 @@ const showResto = (req,res) => {
     Offers: ${resto.offers.join(',')}
     Has Table Booking : ${resto.has_table_booking}
     Location: ${resto.location.address} (longitude : ${resto.location.longitude} latitude: ${resto.location.latitude})
-    Open in zomato - ${resto.deeplink}`
-    res.send(resto);
+    Open in zomato - ${resto.deeplink}\n`
+
+    oauth_twitter.searchbyplace(req,res,resto.name,detailresto);
+    // res.send(resto);
   })
   .catch(function(err) {
     console.error(err);
