@@ -7,8 +7,12 @@ const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 
 function index(req, res) {
-  console.log("req.user",req.user);
-  res.send("Our site is alive, yeay..");
+  console.log("Our site is alive, yeay..");
+  res.redirect('login');
+}
+
+function getRegister(req, res) {
+  res.render('register');
 }
 
 function register(req, res) {
@@ -29,15 +33,24 @@ function getLogin(req, res) {
 }
 
 function login(req, res){
+  console.log(req.body.username);
+  console.log(req.body.password);
   User.findOne({username : req.body.username}, function(err, user){
     if(err){
       res.json({err})
     } else {
-      if(bcrypt.compareSync(req.body.password, user.password)){
+      if(!user){
+        res.send('/');
+      }
+      else if(bcrypt.compareSync(req.body.password, user.password)){
         let token = jwt.sign({username: user.username,role: user.role,location: user.location,id: user._id},secret, {expiresIn:'1h'})
-        res.send(token)
-      }else {
-        res.send('password salah')
+        console.log('success');
+        res.send('/restaurants/help');
+        //res.send(token);
+      } else {
+        console.log(3);
+        console.log('failed');
+        res.send('/');
       }
     }
   })
@@ -111,6 +124,7 @@ function token(req, res){
 
 module.exports = {
   index,
+  getRegister,
   register,
   getLogin,
   login,
